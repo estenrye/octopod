@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	dockertypes "github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
-	"octopod/internal/types"
+	"github.com/estenrye/octopod/internal/types"
 )
 
 func ListServices() ([]types.Service, error) {
