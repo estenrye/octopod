@@ -1,51 +1,40 @@
 package stack
 
-import(
-	//"octopod/internal/types"
+import (
+	"encoding/json"
 	"octopod/internal/types"
-	"sort"
 	"testing"
 )
 
 func TestListStacks(t *testing.T) {
 	var expected = []types.Service{
 		{
-			Name:   "testing_whoami_1",
-			Labels: []types.KeyValue{
-				{
-					Name:  "com.docker.stack.image",
-					Value: "containous/whoami",
-				},
-				{
-					Name:  "com.docker.stack.namespace",
-					Value: "testing",
-				},
-				{
-					Name:  "io.company.variables.vargroup",
-					Value: "2019.08.09",
-				},
+			Name:  "testing_whoami_1",
+			Image: "containous/whoami:latest@sha256:c0d68a0f9acde95c5214bd057fd3ff1c871b2ef12dae2a9e2d2a3240fdd9214b",
+			Labels: map[string]string{
+				"com.docker.stack.image":        "containous/whoami",
+				"com.docker.stack.namespace":    "testing",
+				"io.company.variables.vargroup": "2019.08.09",
+			},
+			Environment: []string{
+				"ENV_Var=value",
 			},
 		},
 		{
-			Name:   "testing_whoami_2",
-			Labels: []types.KeyValue{
-				{
-					Name:  "com.docker.stack.image",
-					Value: "containous/whoami",
-				},
-				{
-					Name:  "com.docker.stack.namespace",
-					Value: "testing",
-				},
-				{
-					Name:  "io.company.variables.vargroup",
-					Value: "2019.08.09",
-				},
+			Name:  "testing_whoami_2",
+			Image: "containous/whoami:latest@sha256:c0d68a0f9acde95c5214bd057fd3ff1c871b2ef12dae2a9e2d2a3240fdd9214b",
+			Labels: map[string]string{
+				"com.docker.stack.image":        "containous/whoami",
+				"com.docker.stack.namespace":    "testing",
+				"io.company.variables.vargroup": "2019.08.09",
+			},
+			Environment: []string{
+				"ENV_Var=value",
 			},
 		},
 	}
 
-	var got, err = ListServices("testing")
+	var got, err = ListServices()
 
 	if nil != err {
 		t.Errorf("Error: %v", err)
@@ -59,35 +48,16 @@ func TestListStacks(t *testing.T) {
 		t.Errorf("Length not equal expected.")
 	}
 
-	if len(got) > 0 && len(expected[0].Labels) != len(got[0].Labels) {
-		t.Errorf("Labels length for service 0 not equal expected.")
+	var expectedJson, expectedJsonErr = json.MarshalIndent(expected, "", "  ")
+	if expectedJsonErr != nil {
+		t.Errorf("Failed to prepare expected json.")
+	}
+	var gotJson, gotJsonErr = ListServicesJson()
+	if gotJsonErr != nil {
+		t.Errorf("Failed to Get Json list of services.")
 	}
 
-	sort.Sort(types.OrderByKeyValueName(expected[0].Labels))
-	sort.Sort(types.OrderByKeyValueName(got[0].Labels))
-
-	for i, label := range got[0].Labels {
-		if expected[0].Labels[i].Name != label.Name {
-			t.Errorf("Label Name `%s` not expected.  Expected `%s`", label.Name, expected[0].Labels[i].Name)
-		}
-		if expected[0].Labels[i].Value != label.Value {
-			t.Errorf("Label Value `%s` not expected.  Expected `%s`", label.Value, expected[0].Labels[i].Value)
-		}
-	}
-
-	sort.Sort(types.OrderByKeyValueName(expected[1].Labels))
-	sort.Sort(types.OrderByKeyValueName(got[1].Labels))
-
-	if len(got) > 1 && len(expected[1].Labels) != len(got[1].Labels) {
-		t.Errorf("Labels length for service 1 not equal expected.")
-	}
-
-	for i, label := range got[1].Labels {
-		if expected[1].Labels[i].Name != label.Name {
-			t.Errorf("Label Name `%s` not expected.  Expected `%s`", label.Name, expected[1].Labels[i].Name)
-		}
-		if expected[0].Labels[i].Value != label.Value {
-			t.Errorf("Label Value `%s` not expected.  Expected `%s`", label.Value, expected[1].Labels[i].Value)
-		}
+	if gotJson != string(expectedJson) {
+		t.Errorf("Json output not equal.\n\nExpected:\n%s\n\nActual:\n%s\n", string(expectedJson), gotJson)
 	}
 }

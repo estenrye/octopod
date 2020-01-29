@@ -2,6 +2,8 @@ version: "3.7"
 services:
   whoami_1:
     image: containous/whoami
+    environment:
+      ENV_Var: value
     ports:
     - 30080:80
     deploy:
@@ -9,6 +11,8 @@ services:
         io.company.variables.vargroup: 2019.08.09
   whoami_2:
     image: containous/whoami
+    environment:
+      ENV_Var: value
     ports:
     - 30081:80
     deploy:
