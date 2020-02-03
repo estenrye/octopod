@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3af9905-6c7a-4546-b8d5-3218f468d06f" name="Default Changelist" comment="Add webserver&#10;&#10;Adds /services GET method added.">
-      <change afterPath="$PROJECT_DIR$/cmd/server/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/server/services.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/server/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/services.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/stack/go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/stack/list.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/stack/list.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/stack/list_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/stack/list_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/types/stack.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/types/services.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,14 +50,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/internal" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\esten\source\octopod\cmd\server" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\esten\source\octopod\internal" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\esten\source\octopod\cmd\server" />
+    </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/estenrye/octopod/cmd/server">
+  <component name="RunManager" selected="Go Test.TestListStacks in github.com/estenrye/octopod/internal/stack">
     <configuration name="go build github.com/estenrye/octopod/cmd/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="octopod" />
       <working_directory value="$PROJECT_DIR$" />
@@ -62,6 +65,17 @@
       <filePath value="$PROJECT_DIR$/cmd/server/server.go" />
       <package value="github.com/estenrye/octopod/cmd/server" />
       <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestListStacks in github.com/estenrye/octopod/internal/stack" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="octopod" />
+      <working_directory value="$PROJECT_DIR$/internal/stack" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/estenrye/octopod/internal/stack" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestListStacks$" />
       <method v="2" />
     </configuration>
     <configuration name="TestListStacks in octopod/internal/stack" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -75,9 +89,21 @@
       <pattern value="^TestListStacks$" />
       <method v="2" />
     </configuration>
+    <configuration name="go test github.com/estenrye/octopod/internal/stack" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="octopod" />
+      <working_directory value="$PROJECT_DIR$/internal/stack" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/estenrye/octopod/internal/stack" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestListStacks in github.com/estenrye/octopod/internal/stack" />
         <item itemvalue="Go Build.go build github.com/estenrye/octopod/cmd/server" />
+        <item itemvalue="Go Test.go test github.com/estenrye/octopod/internal/stack" />
         <item itemvalue="Go Test.TestListStacks in octopod/internal/stack" />
       </list>
     </recent_temporary>
@@ -115,30 +141,30 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="557" y="198" key="#com.intellij.ide.util.MemberChooser/0.0.1500.960@0.0.1500.960" timestamp="1579851299921" />
-    <state x="372" y="73" key="CommitChangelistDialog2" timestamp="1580318183050">
+    <state x="372" y="73" key="CommitChangelistDialog2" timestamp="1580691670238">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="372" y="73" key="CommitChangelistDialog2/0.0.1500.960@0.0.1500.960" timestamp="1580318183050" />
+    <state x="372" y="73" key="CommitChangelistDialog2/0.0.1500.960@0.0.1500.960" timestamp="1580691670238" />
     <state x="532" y="237" key="FileChooserDialogImpl" timestamp="1580180189210">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="532" y="237" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1580180189210" />
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom" timestamp="1580321030851">
+    <state width="1458" height="289" key="GridCell.Tab.0.bottom" timestamp="1580692432760">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1580321030851" />
-    <state width="1458" height="256" key="GridCell.Tab.0.center" timestamp="1580321030850">
+    <state width="1458" height="289" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1580692432760" />
+    <state width="1458" height="289" key="GridCell.Tab.0.center" timestamp="1580692432760">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1580321030850" />
-    <state width="1458" height="256" key="GridCell.Tab.0.left" timestamp="1580321030850">
+    <state width="1458" height="289" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1580692432760" />
+    <state width="1458" height="289" key="GridCell.Tab.0.left" timestamp="1580692432759">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1580321030850" />
-    <state width="1458" height="256" key="GridCell.Tab.0.right" timestamp="1580321030850">
+    <state width="1458" height="289" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1580692432759" />
+    <state width="1458" height="289" key="GridCell.Tab.0.right" timestamp="1580692432760">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1580321030850" />
+    <state width="1458" height="289" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1580692432760" />
     <state x="529" y="201" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1580228122501">
       <screen x="0" y="0" width="1500" height="960" />
     </state>

@@ -9,5 +9,7 @@ import (
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/services", getServices).Methods(http.MethodGet)
+	r.HandleFunc("/services/{name}", getServices).Methods(http.MethodGet)
+	log.Println("Laucning server at http://localhost:9042/services")
 	log.Fatal(http.ListenAndServe(":9042", r))
 }
