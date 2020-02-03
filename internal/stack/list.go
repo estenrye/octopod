@@ -9,6 +9,39 @@ import (
 	"strings"
 )
 
+func ListStatusByName(name string) (types.ServiceSummaryList, error) {
+	//cli, err := client.NewClientWithOpts(client.FromEnv)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//ctx := context.Background()
+	//f := filters.NewArgs()
+	//f.Add("name", name)
+
+	//services, err := cli.ServiceList(
+	//	ctx,
+	//	dockertypes.ServiceListOptions{
+	//		Filters: f,
+	//	},
+	//)
+
+	//if err != nil {
+	//	return nil, err
+	//}
+
+	// tasks, err := cli.TaskList(ctx, dockertypes.TaskListOptions{})
+
+	var result types.ServiceSummaryList
+
+	//for _, service := range services {
+		//for _, task := range tasks {
+		//	task.
+		//}
+	//}
+
+	return result, nil
+}
+
 func ListServicesByName(name string) (types.ServiceList, error) {
 	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {

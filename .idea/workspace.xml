@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3af9905-6c7a-4546-b8d5-3218f468d06f" name="Default Changelist" comment="Add webserver&#10;&#10;Adds /services GET method added.">
+    <list default="true" id="c3af9905-6c7a-4546-b8d5-3218f468d06f" name="Default Changelist" comment="Work in progress.&#10;&#10;implemented sort interface for swarm tasks&#10;Need to implement search interface.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/server/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/stack/go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/stack/list.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/stack/list.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/stack/list_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/stack/list_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/types/stack.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/types/services.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +119,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactor List Method.&#10;&#10;Adds Environment Variables.&#10;Changes Label format from a list of key-value pairs to a map.&#10;Adds Image to data collected." />
     <MESSAGE value="Add webserver&#10;&#10;Adds /services GET method added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add webserver&#10;&#10;Adds /services GET method added." />
+    <MESSAGE value="Update docker version.  Add ability to filter.&#10;&#10;Adds /services/{name}" />
+    <MESSAGE value="Work in progress.&#10;&#10;implemented sort interface for swarm tasks&#10;Need to implement search interface." />
+    <option name="LAST_COMMIT_MESSAGE" value="Work in progress.&#10;&#10;implemented sort interface for swarm tasks&#10;Need to implement search interface." />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -141,10 +136,10 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="557" y="198" key="#com.intellij.ide.util.MemberChooser/0.0.1500.960@0.0.1500.960" timestamp="1579851299921" />
-    <state x="372" y="73" key="CommitChangelistDialog2" timestamp="1580691670238">
+    <state x="372" y="73" key="CommitChangelistDialog2" timestamp="1580736852955">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="372" y="73" key="CommitChangelistDialog2/0.0.1500.960@0.0.1500.960" timestamp="1580691670238" />
+    <state x="372" y="73" key="CommitChangelistDialog2/0.0.1500.960@0.0.1500.960" timestamp="1580736852955" />
     <state x="532" y="237" key="FileChooserDialogImpl" timestamp="1580180189210">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
