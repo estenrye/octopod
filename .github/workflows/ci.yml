@@ -1,9 +1,11 @@
 name: CI (Build, Lint, Test)
 on: 
   pull_request:
+    paths:
+      - '!readme.md'
+      - '!stack.yml'
+      - '!.idea/**'
   push:
-    tags:
-      - '!v*.*'
     paths:
       - '!readme.md'
       - '!stack.yml'
