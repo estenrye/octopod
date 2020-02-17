@@ -78,8 +78,8 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t estenrye/octopod:${{ env.RELEASE_VERSION }} .
-        docker tag estenrye/octopod:${{ env.RELEASE_VERSION }}/version estenrye/octopod:latest
-        docker push estenrye/octopod:${{ env.RELEASE_VERSION }}/version
+        docker tag estenrye/octopod:${{ env.RELEASE_VERSION }} estenrye/octopod:latest
+        docker push estenrye/octopod:${{ env.RELEASE_VERSION }}
         docker push estenrye/octopod:latest
   
   
