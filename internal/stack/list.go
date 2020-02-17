@@ -10,34 +10,49 @@ import (
 )
 
 func ListStatusByName(name string) (types.ServiceSummaryList, error) {
-	//cli, err := client.NewClientWithOpts(client.FromEnv)
-	//if err != nil {
-	//	return nil, err
-	//}
-	//ctx := context.Background()
-	//f := filters.NewArgs()
-	//f.Add("name", name)
+	cli, err := client.NewClientWithOpts(client.FromEnv)
+	if err != nil {
+		return nil, err
+	}
+	ctx := context.Background()
+	f := filters.NewArgs()
+	f.Add("name", name)
 
-	//services, err := cli.ServiceList(
-	//	ctx,
-	//	dockertypes.ServiceListOptions{
-	//		Filters: f,
-	//	},
-	//)
+	services, err := cli.ServiceList(
+		ctx,
+		dockertypes.ServiceListOptions{
+			Filters: f,
+		},
+	)
 
-	//if err != nil {
-	//	return nil, err
-	//}
-
-	// tasks, err := cli.TaskList(ctx, dockertypes.TaskListOptions{})
+	if err != nil {
+		return nil, err
+	}
 
 	var result types.ServiceSummaryList
 
-	//for _, service := range services {
-		//for _, task := range tasks {
-		//	task.
-		//}
-	//}
+	for _, service := range services {
+		tasks, err := cli.TaskList(ctx, dockertypes.TaskListOptions{Filters:f})
+		if err != nil {
+			return nil, err
+		}
+		var s = types.ServiceSummary{
+			Name:     service.Spec.Name,
+			Image:    strings.SplitN(service.Spec.TaskTemplate.ContainerSpec.Image, ":", 2)[0],
+			Tag:      strings.SplitN(service.Spec.TaskTemplate.ContainerSpec.Image, ":", 2)[1],
+			Mode:     service.Spec.Mode,
+			TaskList: make([]types.TaskSummary, 0),
+		}
+
+		for _, task := range tasks {
+			s.TaskList = append(s.TaskList, types.TaskSummary{
+				Id:           task.ID,
+				Status:       task.Status,
+				DesiredState: task.DesiredState,
+			})
+		}
+		result = append(result, s)
+	}
 
 	return result, nil
 }

@@ -3,6 +3,7 @@ package types
 import (
 	"encoding/json"
 	"github.com/docker/docker/api/types/swarm"
+	"sort"
 )
 
 // service representation
@@ -29,7 +30,7 @@ type TaskList []swarm.Task
 
 // Implementation of the Less function of the golang sort interface
 func (t TaskList) Less(i, j int) bool {
-	return t[i].ServiceID < t[j].ServiceID && t[i].ID < t[j].ID
+	return t[i].ServiceID < t[j].ServiceID
 }
 
 // Implementation of the Swap function of the golang sort interface
@@ -40,6 +41,21 @@ func (t TaskList) Swap(i, j int) {
 // Implementation of the Len function of the golang sort interface
 func (t TaskList) Len() int {
 	return t.Len()
+}
+
+func (t TaskList) GetTasks(serviceId string) []swarm.Task {
+	var result []swarm.Task
+	sort.Sort(t)
+	for _, task := range t {
+		if serviceId < task.ServiceID {
+			continue
+		}
+		if serviceId > task.ServiceID {
+			break
+		}
+		result = append(result, task)
+	}
+	return result
 }
 
 type TaskSummary struct {

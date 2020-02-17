@@ -8,6 +8,32 @@ import (
 	"net/http"
 )
 
+func getSummary(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	var data, dataError  = stack.ListStatusByName(vars["name"])
+	if dataError != nil {
+		log.Println(dataError)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	var payload, conversionError = data.ToJSON()
+
+	if conversionError != nil {
+		log.Println(conversionError)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	write, err := w.Write([]byte(payload))
+	if err != nil {
+		log.Println(err)
+		log.Printf("Successfully wrote %d bytes", write)
+	}
+}
+
 func getServices(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	log.Println(fmt.Sprintf("Request: http:localhost:9042/services/%s", vars["name"]))
