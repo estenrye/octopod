@@ -1,7 +1,15 @@
 name: CI (Build, Lint, Test)
-on: [push, pull_request]
+on: 
+  pull-request:
+  push:
+    tags-ignore:
+      - 'v*.*'
+    paths-ignore:
+      - readme.md
+      - stack.yml
+      - .idea/*
+    
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
