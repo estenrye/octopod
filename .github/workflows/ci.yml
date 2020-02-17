@@ -56,26 +56,6 @@ jobs:
           export PATH=$PATH:$(go env GOPATH)/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
           go get -u golang.org/x/lint/golint 
           go lint ./...
-          test:
-            name: Test
-            runs-on: ubuntu-latest
-            steps:
-              - name: Set up Go
-                uses: actions/setup-go@v1
-                with:
-                  go-version: 1.13
-        
-              - name: Check out code
-                uses: actions/checkout@v2
-        
-              - name: Run Unit tests.
-                run: go test ./... -coverprofile=coverage.txt -covermode=atomic
-              
-              - name: Upload Coverage report to CodeCov
-                uses: codecov/codecov-action@v1.0.0
-                with:
-                  token: ${{secrets.CODECOV_TOKEN}}
-                  file: ./coverage.txt
 
   test:
     name: Test
@@ -89,6 +69,12 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
+      - name: Initialize Swarm
+        run: docker swarm init
+      
+      - name: Deploy testing stack
+        run: docker stack deploy -c ./internal/testing.stack.yml testing
+      
       - name: Run Unit tests.
         run: go test ./... -coverprofile=coverage.txt -covermode=atomic
       
