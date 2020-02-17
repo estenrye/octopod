@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// ListStatusByName retrieves the task status for each service that matches name.
 func ListStatusByName(name string) (types.ServiceSummaryList, error) {
 	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {
@@ -46,7 +47,7 @@ func ListStatusByName(name string) (types.ServiceSummaryList, error) {
 
 		for _, task := range tasks {
 			s.TaskList = append(s.TaskList, types.TaskSummary{
-				Id:           task.ID,
+				ID:           task.ID,
 				Status:       task.Status,
 				DesiredState: task.DesiredState,
 			})
@@ -57,6 +58,7 @@ func ListStatusByName(name string) (types.ServiceSummaryList, error) {
 	return result, nil
 }
 
+// ListServicesByName exposes the environment variables and labels of all services that match name.
 func ListServicesByName(name string) (types.ServiceList, error) {
 	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {

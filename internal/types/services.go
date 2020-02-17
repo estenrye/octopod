@@ -6,7 +6,7 @@ import (
 	"sort"
 )
 
-// service representation
+// Service is a simple object representation of a swarm service.
 type Service struct {
 	Name        string            `json:",omitempty"`
 	Image       string            `json:",omitempty"`
@@ -15,8 +15,10 @@ type Service struct {
 	Environment map[string]string `json:",omitempty"`
 }
 
+// ServiceList is a list of swarm services.
 type ServiceList []Service
 
+// ToJSON converts a ServiceList to its JSON representation.
 func (l *ServiceList) ToJSON() (string, error) {
 	formatted, err := json.MarshalIndent(l, "", "  ")
 	if err != nil {
@@ -25,32 +27,33 @@ func (l *ServiceList) ToJSON() (string, error) {
 	return string(formatted), nil
 }
 
-// Sort interface for Docker Swarm Tasks
+// TaskList provides a Sort interface for Docker Swarm Tasks
 type TaskList []swarm.Task
 
-// Implementation of the Less function of the golang sort interface
+// Less function implementation of the golang sort interface
 func (t TaskList) Less(i, j int) bool {
 	return t[i].ServiceID < t[j].ServiceID
 }
 
-// Implementation of the Swap function of the golang sort interface
+// Swap function implementation of the golang sort interface
 func (t TaskList) Swap(i, j int) {
 	t[i], t[j] = t[j], t[i]
 }
 
-// Implementation of the Len function of the golang sort interface
+// Len function implementation of the golang sort interface
 func (t TaskList) Len() int {
 	return t.Len()
 }
 
-func (t TaskList) GetTasks(serviceId string) []swarm.Task {
+// GetTasks returns tasks for the provided serviceID.
+func (t TaskList) GetTasks(serviceID string) []swarm.Task {
 	var result []swarm.Task
 	sort.Sort(t)
 	for _, task := range t {
-		if serviceId < task.ServiceID {
+		if serviceID < task.ServiceID {
 			continue
 		}
-		if serviceId > task.ServiceID {
+		if serviceID > task.ServiceID {
 			break
 		}
 		result = append(result, task)
@@ -58,12 +61,14 @@ func (t TaskList) GetTasks(serviceId string) []swarm.Task {
 	return result
 }
 
+// TaskSummary is a simple struct for outputing task summary information.
 type TaskSummary struct {
-	Id           string           `json:",omitempty"`
+	ID           string           `json:",omitempty"`
 	Status       swarm.TaskStatus `json:",omitempty"`
 	DesiredState swarm.TaskState  `json:",omitempty"`
 }
 
+// ServiceSummary is a simple struct for outputing service information with task summaries.
 type ServiceSummary struct {
 	Name     string            `json:",omitempty"`
 	Image    string            `json:",omitempty"`
@@ -72,8 +77,10 @@ type ServiceSummary struct {
 	TaskList []TaskSummary     `json:",omitempty"`
 }
 
+// ServiceSummaryList is an array of service summaries.
 type ServiceSummaryList []ServiceSummary
 
+// ToJSON converts a ServiceSummaryList to its JSON representation.
 func (l *ServiceSummaryList) ToJSON() (string, error) {
 	formatted, err := json.MarshalIndent(l, "", "  ")
 	if err != nil {

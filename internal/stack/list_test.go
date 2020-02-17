@@ -50,16 +50,16 @@ func TestListStacks(t *testing.T) {
 		t.Errorf("Length not equal expected.")
 	}
 
-	var expectedJson, expectedJsonErr = json.MarshalIndent(expected, "", "  ")
-	if expectedJsonErr != nil {
+	var expectedJSON, expectedJSONErr = json.MarshalIndent(expected, "", "  ")
+	if expectedJSONErr != nil {
 		t.Errorf("Failed to prepare expected json.")
 	}
-	var gotJson, gotJsonErr = got.ToJSON()
-	if gotJsonErr != nil {
+	var gotJSON, gotJSONErr = got.ToJSON()
+	if gotJSONErr != nil {
 		t.Errorf("Failed to Get Json list of services.")
 	}
 
-	if gotJson != string(expectedJson) {
-		t.Errorf("Json output not equal.\n\nExpected:\n%s\n\nActual:\n%s\n", string(expectedJson), gotJson)
+	if gotJSON != string(expectedJSON) {
+		t.Errorf("Json output not equal.\n\nExpected:\n%s\n\nActual:\n%s\n", string(expectedJSON), gotJSON)
 	}
 }

@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
     - name: Set up Go 1.13
       uses: actions/setup-go@v1
       with:
@@ -32,25 +36,68 @@ jobs:
         fi
 
     - name: Build linux_amd64
-      run: GOOS=linux   GOARCH=amd64 go build -o terraform-provider-s3_linux -v .
+      run: GOOS=linux   GOARCH=amd64 go build -o octopod_linux -v ./cmd/server
     
     - name: Build windows_amd64
-      run: GOOS=windows GOARCH=amd64 go build -o terraform-provider-s3_win32nt.exe -v .
+      run: GOOS=windows GOARCH=amd64 go build -o octopod_win32nt.exe -v ./cmd/server
     
     - name: Build darwin_amd64
-      run: GOOS=darwin GOARCH=amd64 go build -o terraform-provider-s3_darwin -v .
+      run: GOOS=darwin GOARCH=amd64 go build -o octopod_darwin -v ./cmd/server
 
     - name: Build freebsd_amd64
-      run: GOOS=freebsd GOARCH=amd64 go build -o terraform-provider-s3_freebsd -v .
+      run: GOOS=freebsd GOARCH=amd64 go build -o octopod_freebsd -v ./cmd/server
 
+    - name: Calculate SHA-256
+      run: sha256sum octopod_* > checksum.txt
+
+    - name: Initialize Swarm
+      run: docker swarm init
+    
+    - name: Deploy testing stack
+      run: docker stack deploy -c ./internal/testing.stack.yml testing
+    
+    - name: Run Unit tests.
+      run: go test ./... -coverprofile=coverage.txt -covermode=atomic
+    
+    - name: Upload Coverage report to CodeCov
+      uses: codecov/codecov-action@v1.0.0
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+        file: ./coverage.txt
+
+    - uses: azure/docker-login@v1
+      with:
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
+    - name: Build Docker Image
+      run: |
+        docker build -t estenrye/octopod:${{ VERSION }} .
+        docker tag -t estenrye/octopod:${{ VERSION }}/version estenrye/octopod:latest
+        docker push estenrye/octopod:${{ VERSION }}/version
+        docker push estenrye/octopod:latest
+  
+  
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          terraform-provider-s3_linux
-          terraform-provider-s3_win32nt.exe
-          terraform-provider-s3_darwin
-          terraform-provider-s3_freebsd
+          octopod_linux
+          octopod_win32nt.exe
+          octopod_darwin
+          octopod_freebsd
+          checksum.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          octopod_linux
+          octopod_win32nt.exe
+          octopod_darwin
+          octopod_freebsd
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
