@@ -12,7 +12,11 @@ on:
       - '!readme.md'
       - '!stack.yml'
       - '!.idea/**'
-      
+    tags:
+      - '**'
+      - '!v*.*'
+    branches:
+      - '**'
 jobs:
   build:
     name: Build
