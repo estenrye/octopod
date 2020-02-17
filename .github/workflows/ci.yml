@@ -2,13 +2,15 @@ name: CI (Build, Lint, Test)
 on: 
   pull_request:
   push:
-    tags-ignore:
-      - 'v*.*'
-    paths-ignore:
-      - readme.md
-      - stack.yml
-      - .idea/*
-    
+    tags:
+      - '!v*.*'
+    paths:
+      - '!readme.md'
+      - '!stack.yml'
+      - '!.idea/**'
+    branches:
+      - '**'
+      
 jobs:
   build:
     name: Build
