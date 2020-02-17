@@ -1,6 +1,6 @@
 name: CI (Build, Lint, Test)
 on: 
-  pull-request:
+  pull_request:
   push:
     tags-ignore:
       - 'v*.*'
