@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  server:
+    image: estenrye/octopod
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role==manager
+    ports:
+      - target: 9042
+        published: 9042
+        protocol: tcp
+        mode: ingress
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
