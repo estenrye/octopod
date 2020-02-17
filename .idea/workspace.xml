@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3af9905-6c7a-4546-b8d5-3218f468d06f" name="Default Changelist" comment="Add webserver&#10;&#10;Adds /services GET method added.">
+    <list default="true" id="c3af9905-6c7a-4546-b8d5-3218f468d06f" name="Default Changelist" comment="Work in progress.&#10;&#10;implemented sort interface for swarm tasks&#10;Need to implement search interface.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/server/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server/services.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/stack/go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/internal/stack/list.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/stack/list.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/stack/list_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/stack/list_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/types/stack.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/types/services.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/types/services.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/types/services.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,14 +46,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/internal" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\esten\source\octopod\internal" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\esten\source\octopod\cmd\server" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\esten\source\octopod\internal" />
+    </key>
   </component>
-  <component name="RunManager" selected="Go Test.TestListStacks in github.com/estenrye/octopod/internal/stack">
+  <component name="RunManager" selected="Go Build.go build github.com/estenrye/octopod/cmd/server">
     <configuration name="go build github.com/estenrye/octopod/cmd/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="octopod" />
       <working_directory value="$PROJECT_DIR$" />
@@ -101,8 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestListStacks in github.com/estenrye/octopod/internal/stack" />
         <item itemvalue="Go Build.go build github.com/estenrye/octopod/cmd/server" />
+        <item itemvalue="Go Test.TestListStacks in github.com/estenrye/octopod/internal/stack" />
         <item itemvalue="Go Test.go test github.com/estenrye/octopod/internal/stack" />
         <item itemvalue="Go Test.TestListStacks in octopod/internal/stack" />
       </list>
@@ -126,7 +122,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactor List Method.&#10;&#10;Adds Environment Variables.&#10;Changes Label format from a list of key-value pairs to a map.&#10;Adds Image to data collected." />
     <MESSAGE value="Add webserver&#10;&#10;Adds /services GET method added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add webserver&#10;&#10;Adds /services GET method added." />
+    <MESSAGE value="Update docker version.  Add ability to filter.&#10;&#10;Adds /services/{name}" />
+    <MESSAGE value="Work in progress.&#10;&#10;implemented sort interface for swarm tasks&#10;Need to implement search interface." />
+    <option name="LAST_COMMIT_MESSAGE" value="Work in progress.&#10;&#10;implemented sort interface for swarm tasks&#10;Need to implement search interface." />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -141,30 +139,30 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="557" y="198" key="#com.intellij.ide.util.MemberChooser/0.0.1500.960@0.0.1500.960" timestamp="1579851299921" />
-    <state x="372" y="73" key="CommitChangelistDialog2" timestamp="1580691670238">
+    <state x="372" y="73" key="CommitChangelistDialog2" timestamp="1581032434363">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="372" y="73" key="CommitChangelistDialog2/0.0.1500.960@0.0.1500.960" timestamp="1580691670238" />
+    <state x="372" y="73" key="CommitChangelistDialog2/0.0.1500.960@0.0.1500.960" timestamp="1581032434363" />
     <state x="532" y="237" key="FileChooserDialogImpl" timestamp="1580180189210">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="532" y="237" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1580180189210" />
-    <state width="1458" height="289" key="GridCell.Tab.0.bottom" timestamp="1580692432760">
+    <state width="1458" height="289" key="GridCell.Tab.0.bottom" timestamp="1581639455025">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="289" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1580692432760" />
-    <state width="1458" height="289" key="GridCell.Tab.0.center" timestamp="1580692432760">
+    <state width="1458" height="289" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1581639455025" />
+    <state width="1458" height="289" key="GridCell.Tab.0.center" timestamp="1581639455025">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="289" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1580692432760" />
-    <state width="1458" height="289" key="GridCell.Tab.0.left" timestamp="1580692432759">
+    <state width="1458" height="289" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1581639455025" />
+    <state width="1458" height="289" key="GridCell.Tab.0.left" timestamp="1581639455024">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="289" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1580692432759" />
-    <state width="1458" height="289" key="GridCell.Tab.0.right" timestamp="1580692432760">
+    <state width="1458" height="289" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1581639455024" />
+    <state width="1458" height="289" key="GridCell.Tab.0.right" timestamp="1581639455025">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="289" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1580692432760" />
+    <state width="1458" height="289" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1581639455025" />
     <state x="529" y="201" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1580228122501">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -177,6 +175,17 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="413" y="219" width="672" height="678" key="search.everywhere.popup/0.0.1500.960@0.0.1500.960" timestamp="1579852950383" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/stack/list.go</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/octopod$TestListStacks_in_octopod_internal_stack.out" NAME="TestListStacks in octopod/internal/stack Coverage Results" MODIFIED="1580274738554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
