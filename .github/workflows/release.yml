@@ -14,10 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
     - name: Set up Go 1.13
       uses: actions/setup-go@v1
       with:
@@ -72,9 +68,9 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t estenrye/octopod:${{ VERSION }} .
-        docker tag -t estenrye/octopod:${{ VERSION }}/version estenrye/octopod:latest
-        docker push estenrye/octopod:${{ VERSION }}/version
+        docker build -t estenrye/octopod:${{ env.RELEASE_VERSION }} .
+        docker tag -t estenrye/octopod:${{ env.RELEASE_VERSION }}/version estenrye/octopod:latest
+        docker push estenrye/octopod:${{ env.RELEASE_VERSION }}/version
         docker push estenrye/octopod:latest
   
   
