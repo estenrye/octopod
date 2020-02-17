@@ -1,4 +1,4 @@
-name: Build
+name: CI (Build, Lint, Test)
 on: [push, pull_request]
 jobs:
 
@@ -25,16 +25,75 @@ jobs:
         fi
 
     - name: Build linux_amd64
-      run: GOOS=linux   GOARCH=amd64 go build -o terraform-provider-s3_linux -v .
+      run: GOOS=linux   GOARCH=amd64 go build -o octopod_linux -v ./cmd/server
     
     - name: Build windows_amd64
-      run: GOOS=windows GOARCH=amd64 go build -o terraform-provider-s3_win32nt.exe -v .
+      run: GOOS=windows GOARCH=amd64 go build -o octopod_win32nt.exe -v ./cmd/server
     
     - name: Build darwin_amd64
-      run: GOOS=darwin GOARCH=amd64 go build -o terraform-provider-s3_darwin -v .
+      run: GOOS=darwin GOARCH=amd64 go build -o octopod_darwin -v ./cmd/server
 
     - name: Build freebsd_amd64
-      run: GOOS=freebsd GOARCH=amd64 go build -o terraform-provider-s3_freebsd -v .
+      run: GOOS=freebsd GOARCH=amd64 go build -o octopod_freebsd -v ./cmd/server
     
     - name: Docker Build
       run: docker build -t octopod:1 .
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+
+      - name: Check out code
+        uses: actions/checkout@v1
+
+      - name: Lint Go Code
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
+          go get -u golang.org/x/lint/golint 
+          go lint ./...
+          test:
+            name: Test
+            runs-on: ubuntu-latest
+            steps:
+              - name: Set up Go
+                uses: actions/setup-go@v1
+                with:
+                  go-version: 1.13
+        
+              - name: Check out code
+                uses: actions/checkout@v2
+        
+              - name: Run Unit tests.
+                run: go test ./... -coverprofile=coverage.txt -covermode=atomic
+              
+              - name: Upload Coverage report to CodeCov
+                uses: codecov/codecov-action@v1.0.0
+                with:
+                  token: ${{secrets.CODECOV_TOKEN}}
+                  file: ./coverage.txt
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run Unit tests.
+        run: go test ./... -coverprofile=coverage.txt -covermode=atomic
+      
+      - name: Upload Coverage report to CodeCov
+        uses: codecov/codecov-action@v1.0.0
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./coverage.txt
