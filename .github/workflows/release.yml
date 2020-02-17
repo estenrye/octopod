@@ -66,6 +66,9 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
+    - name: Set env
+      run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
+
     - name: Build Docker Image
       run: |
         docker build -t estenrye/octopod:${{ env.RELEASE_VERSION }} .
