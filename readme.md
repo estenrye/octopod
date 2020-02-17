@@ -43,7 +43,7 @@ docker stack deploy -c ./stack.yml octopod
 ## What APIs does it provide?
 
 | API Endpoint | Description |
-| -- | -- |
+| :--- | :--- |
 | `/summary` | Returns a list of all services in the swarm and all task instances for each service. |
 | `/summary/{name}` | Returns a list of services that prefix match `{name}` and all task instances for each matching service. |
 | `/services` | Returns a list of all services in the swarm with their environment variables and service labels. |
