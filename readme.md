@@ -44,7 +44,7 @@ docker stack deploy -c ./stack.yml octopod
 
 | API Endpoint | Description |
 | :--- | :--- |
-| `/summary` | Returns a list of all services in the swarm and all task instances for each service. |
-| `/summary/{name}` | Returns a list of services that prefix match `{name}` and all task instances for each matching service. |
-| `/services` | Returns a list of all services in the swarm with their environment variables and service labels. |
-| `/services/{name}` | Returns a list of servicesz that prefix match `{name}` and their environment variables and service labels. |
+| `/summary` | Returns a list of all services in the swarm and all task<br/>instances for each service. |
+| `/summary/{name}` | Returns a list of services that prefix match `{name}`<br/>and all task instances for each matching service. |
+| `/services` | Returns a list of all services in the swarm with their<br/>environment variables and service labels. |
+| `/services/{name}` | Returns a list of servicesz that prefix match `{name}`<br/>and their environment variables and service labels. |
