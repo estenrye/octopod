@@ -2,16 +2,16 @@ name: CI (Build, Lint, Test)
 on: 
   pull_request:
     paths:
+      - '**'
       - '!readme.md'
       - '!stack.yml'
       - '!.idea/**'
   push:
     paths:
+      - '**'
       - '!readme.md'
       - '!stack.yml'
       - '!.idea/**'
-    branches:
-      - '**'
       
 jobs:
   build:
