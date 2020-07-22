@@ -1,11 +1,11 @@
 name: CI (Build, Lint, Test)
 on: 
-  pull_request:
-    paths:
-      - '**'
-      - '!readme.md'
-      - '!stack.yml'
-      - '!.idea/**'
+  # pull_request:
+  #   paths:
+  #     - '**'
+  #     - '!readme.md'
+  #     - '!stack.yml'
+  #     - '!.idea/**'
   push:
     paths:
       - '**'
@@ -85,6 +85,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
+      - name: get docker info
+        run: docker info
+        
       - name: Initialize Swarm
         run: docker swarm init
       
