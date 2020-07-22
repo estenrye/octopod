@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/estenrye/octopod)
+
 # Octopod
 
 ![CI (Build, Lint, Test)](https://github.com/estenrye/octopod/workflows/CI%20(Build,%20Lint,%20Test)/badge.svg)
