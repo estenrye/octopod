@@ -85,6 +85,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
+      - name: get docker info
+        run: docker info
+        
       - name: Initialize Swarm
         run: docker swarm init
       
