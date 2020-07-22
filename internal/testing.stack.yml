@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   whoami_1:
-    image: containous/whoami:latest@c0d68a0f9acde95c5214bd057fd3ff1c871b2ef12dae2a9e2d2a3240fdd9214b
+    image: containous/whoami@sha256:c0d68a0f9acde95c5214bd057fd3ff1c871b2ef12dae2a9e2d2a3240fdd9214b
     environment:
       ENV_Var: value
     ports:
@@ -10,7 +10,7 @@ services:
       labels:
         io.company.variables.vargroup: 2019.08.09
   whoami_2:
-    image: containous/whoami:latest@c0d68a0f9acde95c5214bd057fd3ff1c871b2ef12dae2a9e2d2a3240fdd9214b
+    image: containous/whoami@sha256:c0d68a0f9acde95c5214bd057fd3ff1c871b2ef12dae2a9e2d2a3240fdd9214b
     environment:
       ENV_Var: value
     ports:
